@@ -36,7 +36,7 @@ const Header = (props) => {
         />
       </div>
       <button onClick={() => navigate(props.login ? "/login" : "/signup")}>
-        {props.login ? "Log in" : "Sign In"}
+        {props.login ? "Log In" : "Sign In"}
       </button>
     </HeaderContainer>
   );
