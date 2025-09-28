@@ -1,7 +1,14 @@
+// this is external libraries
 import React, { useState } from "react";
-import BackgroundImage from "../components/BackgroundImage";
+// Just import or copy the code from the sign-up page, then edit createUserWithEmailAndPassword to signInWithEmailAndPassword, because we are importing it from firebase/auth.
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+
+//Internal imports
+import BackgroundImage from "../components/BackgroundImage";
 import Header from "../components/Header";
+import { firebaseAuth } from "../utils/Firebase-config";
 
 const Wrapper = styled.div`
   position: relative;

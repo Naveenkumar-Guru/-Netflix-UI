@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { firebaseAuth } from "../utils/Firebase-config";
+// import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
-import styled from "styled-components";
-import { firebaseAuth } from "../utils/Firebase-config";
 
 const Container = styled.div`
   position: relative;
@@ -66,6 +71,22 @@ const Container = styled.div`
 
 const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false); //it is change to true
+  const [formvalues, setFormvalues] = useState({ email: "", password: "" });
+
+  // const navigate = useNavigate(); //from import by using
+
+  const handleSignIn = async () => {
+    try {
+      const { email, password } = formvalues;
+      await createUserWithEmailAndPassword(firebaseAuth, email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // onAuthStateChanged(firebaseAuth, (currentuser) => {
+  //   if (currentuser) navigate("/"); //if user is same then redirector to home page
+  // });
 
   return (
     <Container>
@@ -82,14 +103,36 @@ const SignUpPage = () => {
           </div>
           <div className="form">
             {showPassword ? (
-              <input type="password" placeholder="password" name="password" />
+              <input
+                type="password"
+                placeholder="password"
+                name="password"
+                value={formvalues.password}
+                onChange={(e) =>
+                  setFormvalues({
+                    ...formvalues,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
             ) : (
-              <input type="email" placeholder="email address" name="email" />
+              <input
+                type="email"
+                placeholder="email address"
+                name="email"
+                value={formvalues.email}
+                onChange={(e) =>
+                  setFormvalues({
+                    ...formvalues,
+                    [e.target.name]: e.target.value,
+                  })
+                }
+              />
             )}
             {!showPassword ? (
               <button onClick={() => setShowPassword(true)}>Get Started</button>
             ) : (
-              <button>Sign Up</button>
+              <button onClick={handleSignIn}>Sign Up</button>
             )}
           </div>
         </div>
@@ -99,5 +142,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
-
-//1.18.43

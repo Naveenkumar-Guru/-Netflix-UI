@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
-import Player from "./pages/Player";
+import Player from "./pages/Player"; //home page
 import TvShow from "./pages/TvShow";
 import Netflix from "./pages/Netflix";
 import MoviePage from "./pages/MoviePage";
