@@ -5,7 +5,7 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 import { firebaseAuth } from "../utils/Firebase-config";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
 
@@ -73,7 +73,7 @@ const SignUpPage = () => {
   const [showPassword, setShowPassword] = useState(false); //it is change to true
   const [formvalues, setFormvalues] = useState({ email: "", password: "" });
 
-  // const navigate = useNavigate(); //from import by using
+  const navigate = useNavigate(); //from import by using
 
   const handleSignIn = async () => {
     try {
@@ -84,9 +84,9 @@ const SignUpPage = () => {
     }
   };
 
-  // onAuthStateChanged(firebaseAuth, (currentuser) => {
-  //   if (currentuser) navigate("/"); //if user is same then redirector to home page
-  // });
+  onAuthStateChanged(firebaseAuth, (currentuser) => {
+    if (currentuser) navigate("/"); //if user is same then redirector to home page
+  });
 
   return (
     <Container>
