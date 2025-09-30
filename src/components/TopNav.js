@@ -3,7 +3,6 @@ import { AiOutlineLogout } from "react-icons/ai";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { firebaseAuth } from "../utils/Firebase-config";
-
 import { onAuthStateChanged, signOut } from "firebase/auth";
 
 const TopNav = ({ isScrolled }) => {
@@ -74,6 +73,7 @@ const NavContainer = styled.div`
       display: flex;
       align-items: center;
       gap: 2rem;
+      margin-left: 5rem;
 
       .logo {
         display: flex;
@@ -101,6 +101,7 @@ const NavContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-right: 1rem;
     button {
       background-color: red;
       border: none;
