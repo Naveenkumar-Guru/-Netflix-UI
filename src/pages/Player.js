@@ -28,7 +28,7 @@ const PlayContainer = styled.div`
     width: 100vw;
     height: 100vh;
     .backArrow {
-      position: absolute; // 
+      position: absolute; //
       padding: 2rem;
       z-index: 1; // Navigate back to the previous route when the back arrow is clicked.
       svg {
@@ -44,5 +44,3 @@ const PlayContainer = styled.div`
   }
 `;
 export default Player;
-
-//2.35
