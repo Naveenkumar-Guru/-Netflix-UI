@@ -1,5 +1,4 @@
 import React from "react";
-// import styled from "styled-components";
 import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -29,9 +28,9 @@ const PlayContainer = styled.div`
     width: 100vw;
     height: 100vh;
     .backArrow {
-      position: absolute; //
+      position: absolute; // 
       padding: 2rem;
-      /* z-index: 1; */
+      z-index: 1; // Navigate back to the previous route when the back arrow is clicked.
       svg {
         font-size: 3rem;
         cursor: pointer;

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { AiOutlineInfoCircle } from "react-icons";
-import { Faplay } from "react-icons/fa";
+// import { AiOutlineInfoCircle } from "react-icons";
+// import { Faplay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 import TopNav from "../components/TopNav";
+import Card from "../components/Card";
 
 const Netflix = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -44,6 +45,7 @@ const Netflix = () => {
           </div>
         </div>
       </div>
+      <Card />
     </HeroContainer>
   );
 };
