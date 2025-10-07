@@ -22,7 +22,9 @@ const Card = () => {
         onClick={() => navigate("/player")}
       />
       {onHovered && (
-        <div>
+        <div className="hover">
+          {" "}
+          {/* ✅ Added className here */}
           <div className="image-video-wrapper">
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaCor4AIV__zuNlgGZTSr424NdUudWBQKBrA&usqp=CAU"
@@ -47,21 +49,21 @@ const Card = () => {
                   onClick={() => navigate("/player")}
                 />
                 <RiThumbUpFill title="like" />
-                <RiThumbDownFill title="like" />
-                <BsCheck title="Remove" from List />
-                <AiOutlinePlus title="add to my List" />
+                <RiThumbDownFill title="Dislike" />
+                <BsCheck title="Remove from List" /> {/* ✅ Fixed this */}
+                <AiOutlinePlus title="Add to my List" />
               </div>
               <div className="info">
                 <BiChevronDown title="more Info" />
               </div>
-              <div className="genres">
-                <ul>
-                  <li>Action</li>
-                  <li>Action</li>
-                  <li>Action</li>
-                  <li>Action</li>
-                </ul>
-              </div>
+            </div>
+            <div className="genre">
+              <ul>
+                <li>Action</li>
+                <li>Action</li>
+                <li>Action</li>
+                <li>Action</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -71,140 +73,106 @@ const Card = () => {
 };
 
 const CardContainer = styled.div`
+  margin-top: 1rem;
   max-width: 230px;
   width: 230px;
   height: 100%;
   cursor: pointer;
   position: relative;
-  transition: transform 0.3s ease-in-out;
 
   img {
-    border-radius: 0.3rem;
+    border-radius: 0.2rem;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-  }
-
-  &:hover img {
-    transform: scale(1.05);
+    z-index: 10;
   }
 
   .hover {
-    position: absolute;
-    top: -10rem;
-    left: -2rem;
-    width: 20rem;
-    background-color: #181818;
-    border-radius: 0.3rem;
-    border: 1px solid gray;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
     z-index: 99;
-    transition: all 0.3s ease-in-out;
-    padding-bottom: 0.8rem;
-    overflow: hidden;
-    transform: scale(1.02);
+    height: max-content;
+    width: 20rem;
+    position: absolute;
+    top: -18vh;
+    left: 0;
+    border-radius: 0.2rem;
+    border: 0.1rem solid gray;
+    background-color: #181818;
+    transition: 0.3s ease-out;
 
     .image-video-wrapper {
       position: relative;
-      height: 150px;
+      height: 140px;
 
-      img,
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 0.3rem;
+        top: 0;
+        z-index: 4;
+        position: absolute;
+      }
+
       video {
         width: 100%;
         height: 150px;
         object-fit: cover;
-        border-radius: 0.3rem 0.3rem 0 0;
-        position: absolute;
+        border-radius: 0.3rem;
         top: 0;
-        left: 0;
+        z-index: 4;
+        position: absolute;
       }
     }
 
     .info-container {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
       padding: 1rem;
+      gap: 0.5rem;
 
       .movieName {
         color: white;
-        font-size: 1rem;
-        font-weight: 600;
-        margin-bottom: 0.3rem;
       }
+    }
 
-      /* Icon row */
-      .icons {
+    .icons {
+      display: flex;
+      justify-content: space-between;
+
+      .controls {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        /* Play, Like, Dislike, Add */
-        .controls {
-          display: flex;
-          gap: 0.6rem;
-
-          svg {
-            color: white;
-            border: 1px solid white;
-            border-radius: 50%;
-            font-size: 1.3rem;
-            padding: 0.35rem;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-
-            &:hover {
-              background-color: rgba(255, 255, 255, 0.2);
-              color: #b8b8b8;
-            }
-          }
-        }
-
-        /* Info (down arrow) */
-        .info svg {
-          color: white;
-          font-size: 1.4rem;
-          border: 1px solid white;
-          border-radius: 50%;
-          padding: 0.3rem;
-          cursor: pointer;
-          transition: all 0.3s ease-in-out;
-
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #b8b8b8;
-          }
-        }
+        gap: 0.5rem;
       }
 
-      /* Genres row */
-      .genres {
-        margin-top: 0.4rem;
+      svg {
+        color: white;
+        border: 0.1rem solid white;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
 
-        ul {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-          color: gray;
-          font-size: 0.85rem;
-          padding: 0;
-          margin: 0;
-
-          li {
-            list-style: none;
-            position: relative;
-            padding-right: 0.7rem;
-
-            &:not(:last-child)::after {
-              content: "•";
-              position: absolute;
-              right: 0.3rem;
-              color: gray;
-            }
-          }
+        &:hover {
+          color: #b8b8b8;
         }
       }
     }
+   .genres {
+      display: flex;
+      color: white;
+
+      ul {
+        display: flex;
+        gap: 1rem;
+
+        li {
+          padding-right: 0.7rem;
+
+          &:first-of-type {
+            list-style-type: none;
+          }
+        }
+      }
   }
 `;
 
