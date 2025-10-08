@@ -135,7 +135,28 @@ const CardContainer = styled.div`
       }
     }
 
+    .icons {
+      display: flex;
+      justify-content: space-between;
 
+      .controls {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      svg {
+        color: white;
+        border: 0.1rem solid white;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+          color: #b8b8b8;
+        }
+      }
+    }
    .genres {
       display: flex;
       color: white;
