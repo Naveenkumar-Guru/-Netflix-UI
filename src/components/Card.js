@@ -17,7 +17,7 @@ const Card = () => {
       onMouseLeave={() => setOnHovered(false)}
     >
       <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaCor4AIV__zuNlgGZTSr424NdUudWBQKBrA&usqp=CAU"
+        src={`https://image.tmdb.org/t/p/w500${movieData.image}`}
         alt="movie poster"
         onClick={() => navigate("/player")}
       />
