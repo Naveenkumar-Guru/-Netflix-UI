@@ -1,26 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 // import { AiOutlineInfoCircle } from "react-icons";
 // import { Faplay } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
 import TopNav from "../components/TopNav";
 import Card from "../components/Card";
+import { fetchMovies, getGenres } from "../store";
 
 const Netflix = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+  const movies = useSelector((state) => state.netflix.movies);
+  const generesLoaded = useSelector((state) => state.netflix.generesLoaded);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getGenres());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (generesLoaded) {
+      dispatch(fetchMovies({ type: "all" }));
+    }
+  });
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset === 0 ? false : true);
     return () => (window.onscroll = null);
   };
-  console.log(isScrolled);
+  // console.log(movies);
 
   return (
     <HeroContainer>
       <div className="hero">
-        <TopNav isScrolled={isScrolled} /> /render
+        <TopNav isScrolled={isScrolled} />
         <img
           className="background-img"
           src="https://res.cloudinary.com/ehizeex-shop/image/upload/v1668267540/NetflixApp/avengers-age-of-ultron-team-together-poster-wallpaper-1600x600-92751_84_qvwbif.jpg"
